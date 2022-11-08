@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Home</string>
+    <string name="visieter_habit">Visit</string>
+    <string name="edit_habit">Edit Home</string>
+</resources>
