@@ -2,4 +2,8 @@
     <string name="app_name">Habitation</string>
     <string name="visieter_habit">Visiter</string>
     <string name="edit_habit">Editer l\'Habitation</string>
+    <string name="sud">Sud</string>
+    <string name="nord">Nord</string>
+    <string name="est">Est</string>
+    <string name="ouest">Ouest</string>
 </resources>

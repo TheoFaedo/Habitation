@@ -10,7 +10,7 @@
     <TextView
             android:text="Prendre la photo de la facade Nord"
             android:layout_width="0dp"
-            android:layout_height="0dp" android:id="@+id/textView4"
+            android:layout_height="0dp" android:id="@+id/text_prendre_photo"
             android:textAlignment="center"
             app:layout_constraintTop_toBottomOf="@+id/nom_piece_input" android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/text_nombre_photo"
@@ -22,7 +22,7 @@
             android:layout_height="56dp" android:id="@+id/text_nombre_photo"
             android:textAlignment="center"
             android:textSize="25sp"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/text_prendre_photo"
             app:layout_constraintStart_toEndOf="@+id/prendre_facade_button" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="396dp" app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginEnd="61dp"/>
@@ -32,7 +32,7 @@
             android:id="@+id/nom_piece_input"
             android:layout_marginTop="110dp"
             android:layout_marginBottom="71dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/textView4" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/text_prendre_photo" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp" android:layout_marginEnd="32dp">
 
@@ -46,7 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp" android:id="@+id/prendre_facade_button"
             android:onClick="OnPhotoClick"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/text_prendre_photo"
             app:layout_constraintEnd_toStartOf="@+id/text_nombre_photo" android:layout_marginBottom="11dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="54dp" app:layout_constraintBottom_toBottomOf="@+id/text_nombre_photo"/>
@@ -58,5 +58,6 @@
             app:layout_constraintTop_toBottomOf="@+id/text_nombre_photo"
             app:layout_constraintEnd_toStartOf="@+id/text_nombre_photo" android:layout_marginEnd="4dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="145dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="267dp"/>
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="267dp"
+            android:onClick="OnConfirmClick"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
