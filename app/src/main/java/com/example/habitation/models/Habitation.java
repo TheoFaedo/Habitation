@@ -19,10 +19,12 @@ public class Habitation {
 
     private Piece pieceDepart;
     private List<Piece> pieces;
+    private String nom;
 
     public Habitation(){
         this.pieceDepart = null;
         this.pieces = new ArrayList<>();
+        this.nom = "maison";
     }
 
     public Piece getPremierePiece(){
