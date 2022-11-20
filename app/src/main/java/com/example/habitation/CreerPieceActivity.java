@@ -39,10 +39,10 @@ public class CreerPieceActivity extends AppCompatActivity {
         numFacadeActu = 0;
         facadeActu = new Facade[4];
 
-        boutonPhoto = findViewById(R.id.prendre_facade_button);
+        //boutonPhoto = findViewById(R.id.prendre_facade_button);
         inputNomPiece = findViewById(R.id.nom_piece_input);
-        textNombrePhoto = findViewById(R.id.text_nombre_photo);
-        textFacePhoto = findViewById(R.id.text_prendre_photo);
+//        textNombrePhoto = findViewById(R.id.text_nombre_photo);
+//        textFacePhoto = findViewById(R.id.text_prendre_photo);
 
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),

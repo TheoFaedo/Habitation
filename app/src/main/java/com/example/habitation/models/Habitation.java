@@ -40,15 +40,7 @@ public class Habitation {
     }
 
     public void save(Context context){
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String json = ow.writeValueAsString(object);
-        try{
-            FileOutputStream fos = context.openFileOutput("habitation.data", MODE_PRIVATE);
-            fos.write(habToSave.getBytes());
-            fos.flush();
-        }catch(IOException e) {
-            Toast.makeText(context, "erreur dans la sauvegarde", Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     public static Habitation load(Context context){

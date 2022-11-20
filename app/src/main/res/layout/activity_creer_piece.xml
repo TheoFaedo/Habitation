@@ -7,32 +7,41 @@
         android:layout_height="match_parent"
         tools:context=".CreerPieceActivity">
 
-    <TextView
-            android:text="Prendre la photo de la facade Nord"
+    <ImageView
             android:layout_width="0dp"
-            android:layout_height="0dp" android:id="@+id/text_prendre_photo"
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@+id/nom_piece_input" android:layout_marginBottom="10dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/text_nombre_photo"
+            android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView3"
+            app:layout_constraintEnd_toStartOf="@+id/imageView5" app:layout_constraintTop_toTopOf="@+id/imageView5"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="59dp" android:layout_marginEnd="59dp"/>
-    <TextView
-            android:text="0/4"
-            android:layout_width="80dp"
-            android:layout_height="56dp" android:id="@+id/text_nombre_photo"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            app:layout_constraintTop_toBottomOf="@+id/text_prendre_photo"
-            app:layout_constraintStart_toEndOf="@+id/prendre_facade_button" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="396dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginEnd="61dp"/>
+            android:layout_marginStart="50dp" app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+            android:layout_marginEnd="56dp"/>
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView6"
+            app:layout_constraintEnd_toStartOf="@+id/imageView7" app:layout_constraintTop_toTopOf="@+id/imageView7"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="50dp" app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+            android:layout_marginEnd="56dp"/>
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView7"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5" app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="59dp"
+            app:layout_constraintBottom_toTopOf="@+id/button" android:layout_marginEnd="47dp"
+    />
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView5"
+            app:layout_constraintTop_toBottomOf="@+id/nom_piece_input"
+            app:layout_constraintStart_toEndOf="@+id/imageView3" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp" app:layout_constraintBottom_toTopOf="@+id/imageView7"
+            android:layout_marginEnd="47dp"/>
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/nom_piece_input"
             android:layout_marginTop="110dp"
-            android:layout_marginBottom="71dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/text_prendre_photo" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="24dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp" android:layout_marginEnd="32dp">
 
@@ -42,22 +51,11 @@
                 android:hint="nom de la piece"/>
     </com.google.android.material.textfield.TextInputLayout>
     <Button
-            android:text="ajouter une photo"
-            android:layout_width="0dp"
-            android:layout_height="0dp" android:id="@+id/prendre_facade_button"
-            android:onClick="OnPhotoClick"
-            app:layout_constraintTop_toBottomOf="@+id/text_prendre_photo"
-            app:layout_constraintEnd_toStartOf="@+id/text_nombre_photo" android:layout_marginBottom="11dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="54dp" app:layout_constraintBottom_toBottomOf="@+id/text_nombre_photo"/>
-    <Button
             android:text="Confirmer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/button"
-            android:layout_marginTop="81dp"
-            app:layout_constraintTop_toBottomOf="@+id/text_nombre_photo"
-            app:layout_constraintEnd_toStartOf="@+id/text_nombre_photo" android:layout_marginEnd="4dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="145dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="267dp"
-            android:onClick="OnConfirmClick"/>
+            android:onClick="OnConfirmClick"
+            app:layout_constraintTop_toBottomOf="@+id/imageView7" android:layout_marginBottom="56dp"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
