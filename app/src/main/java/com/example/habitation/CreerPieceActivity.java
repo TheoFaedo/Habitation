@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -16,6 +17,8 @@ import com.example.habitation.models.Piece;
 import com.google.android.material.textfield.TextInputLayout;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class CreerPieceActivity extends AppCompatActivity {
@@ -25,12 +28,10 @@ public class CreerPieceActivity extends AppCompatActivity {
 
     private int numFacadeActu;
 
-    private Button boutonPhoto;
     private TextInputLayout inputNomPiece;
-    private TextView textNombrePhoto;
 
-    private TextView textFacePhoto;
-
+    private List<ImageView> images;
+    private ImageView imageActu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,35 +39,24 @@ public class CreerPieceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_creer_piece);
         numFacadeActu = 0;
         facadeActu = new Facade[4];
-
-        //boutonPhoto = findViewById(R.id.prendre_facade_button);
-        inputNomPiece = findViewById(R.id.nom_piece_input);
-//        textNombrePhoto = findViewById(R.id.text_nombre_photo);
-//        textFacePhoto = findViewById(R.id.text_prendre_photo);
-
+        images = Arrays.asList(findViewById(R.id.imageView_1), findViewById(R.id.imageView_1), findViewById(R.id.imageView_1), findViewById(R.id.imageView_1));
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-
                     //récupération de l'image
                     Bundle extra = result.getData().getExtras();
                     Bitmap image = (Bitmap) extra.get("data");
 
                     //ajout dans le tableau
-                    facadeActu[numFacadeActu] = new Facade(image);
-                    numFacadeActu++;
-                    String text = numFacadeActu+"/4";
-                    textNombrePhoto.setText(text);
-
-                    text = "Prendre la photo de la facade " + pointCardinalActu();
-                    textFacePhoto.setText(text);
+                    imageActu.setImageBitmap(image);
                 }
         );
+        inputNomPiece = findViewById(R.id.nom_piece_input);
+
     }
 
     public void OnPhotoClick(View v){
-        if(numFacadeActu>=3) boutonPhoto.setEnabled(false); //Si on est à la dernière photo, on desactive le bouton
-
+        imageActu = (ImageView) v;
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         launcher.launch(i);
     }
