@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.habitation"
-        minSdk 27
+        minSdk 26
         compileSdk 32
         targetSdk 32
         versionCode 1
