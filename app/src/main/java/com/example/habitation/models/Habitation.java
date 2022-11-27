@@ -4,13 +4,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.Toast;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -18,12 +21,12 @@ import static android.content.Context.MODE_PRIVATE;
 public class Habitation {
 
     private Piece pieceDepart;
-    private List<Piece> pieces;
+    private HashMap<String, Piece> pieces;
     private String nom;
 
     public Habitation(){
         this.pieceDepart = null;
-        this.pieces = new ArrayList<>();
+        this.pieces = new HashMap<>();
         this.nom = "maison";
     }
 
@@ -32,26 +35,46 @@ public class Habitation {
     }
 
     public void ajouterPiece(Piece p){
-        pieces.add(p);
+        pieces.put(p.getNom(), p);
     }
 
-    public List<Piece> getPieces(){
+    public HashMap<String, Piece> getPieces(){
         return pieces;
     }
 
-    public void save(Context context){
+    public Piece getPiece(String nomPiece){
 
     }
 
-    public static Habitation load(Context context){
+    public void save(Context context) throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("nom", this.nom);
+        json.put("pieces", this.pieces);
+        json.put("pieceDepart", this.pieceDepart);
+        try{
+            FileOutputStream fos = context.openFileOutput("habitation.data", MODE_PRIVATE);
+            fos.write(json.toString().getBytes(StandardCharsets.UTF_8));
+            fos.flush();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static Habitation load(Context context) throws JSONException {
+        StringBuilder jsonStr = new StringBuilder();
         try {
             FileInputStream fis = context.openFileInput("habitation.data");
-
-            Toast.makeText(context, fis.toString(), Toast.LENGTH_SHORT).show();
+            int i;
+            while ((i = fis.read()) != -1) {
+                jsonStr.append((char) i);
+            }
             fis.close();
         } catch (IOException e) {
-            Toast.makeText(context, "erreur dans le chargement", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "erreur dans le chargement", Toast.LENGTH_LONG).show();
         }
+        Toast.makeText(context, jsonStr.toString(), Toast.LENGTH_SHORT).show();
+        JSONObject json = new JSONObject(jsonStr.toString());
         return new Habitation();
     }
 

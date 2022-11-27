@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.habitation.models.Habitation;
 import com.example.habitation.models.Piece;
+import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,8 +17,12 @@ public class MainActivity extends AppCompatActivity {
 
         Habitation hab = new Habitation();
         hab.ajouterPiece(new Piece());
-        hab.save(MainActivity.this);
-        Habitation.load(MainActivity.this);
+        try {
+            hab.save(MainActivity.this);
+            Habitation.load(MainActivity.this);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void OnEditClick(View v){

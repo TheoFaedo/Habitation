@@ -11,6 +11,7 @@ import com.example.habitation.R;
 public class Canvas extends View{
     private Paint paint;
     private float orientationBousole;
+    private Bitmap image;
 
     float time;
 
@@ -31,7 +32,9 @@ public class Canvas extends View{
         paint.setAntiAlias(true);
         paint.setFilterBitmap(true);
         paint.setDither(true);
-        this.orientationBousole = 0;
+        paint.setTextSize(80);
+        this.orientationBousole = -2.5f;
+        this.image = BitmapFactory.decodeResource(getResources(), R.drawable.wind_rose);
     }
 
     @Override
@@ -43,21 +46,49 @@ public class Canvas extends View{
 
         canvas.drawColor(Color.WHITE);
         paint.setColor(Color.GRAY);
-        canvas.drawCircle(middlex, middley, middlex-10, paint);
+        canvas.drawCircle(middlex, middley, middlex-80, paint);
         paint.setColor(Color.WHITE);
-        canvas.drawCircle(middlex, middley, middlex-20, paint);
+        canvas.drawCircle(middlex, middley, middlex-90, paint);
+        paint.setColor(Color.BLACK);
+        canvas.drawLine(middlex, middley, middlex, middley-(middlex-90), paint);
+
+        Rect textBounds = new Rect();
+        paint.getTextBounds(getPointCardinalActuel()+"", 0, 1, textBounds);
+        canvas.drawText(getPointCardinalActuel()+"", middlex - textBounds.exactCenterX(), middley - middlex - textBounds.exactCenterY(), paint);
+
+
         paint.setColor(Color.RED);
 
+        float x = (float) -Math.sin(this.orientationBousole);
+        float y = (float) -Math.cos(this.orientationBousole);
 
-        float compasX = (float) -Math.sin(this.orientationBousole)*80;
-        float compasY = (float) -Math.cos(this.orientationBousole)*80;
-        canvas.drawLine(middlex, middley, middlex+(compasX*5), middley+(compasY*5), paint);
+        x = x*(middlex-90);
+        y = y*(middlex-90);
 
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.wind_rose);
-        canvas.drawBitmap(bmp, 0, 0, null);
+        canvas.drawLine(middlex, middley, middlex+x, middley+y, paint);
+
+
+
+        paint.setTextSize(50);
+        textBounds = new Rect();
+        paint.getTextBounds("N", 0, 1, textBounds);
+        canvas.drawText("N", middlex+(x*1.2f) - textBounds.exactCenterX(), middley+(y*1.2f) - textBounds.exactCenterY(), paint);
     }
 
     public void setOrientation(float or){
         this.orientationBousole = or;
+    }
+
+    public char getPointCardinalActuel(){
+        double degrees = Math.toDegrees(this.orientationBousole);
+        if(degrees>=45 && degrees<135){
+            return 'E';
+        }else if(degrees>=135 || degrees<=-135){
+            return 'S';
+        }else if(degrees<-45 && degrees>-135){
+            return 'O';
+        }else{
+            return 'N';
+        }
     }
 }
