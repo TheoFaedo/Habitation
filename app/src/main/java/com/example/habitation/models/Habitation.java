@@ -3,7 +3,10 @@ package com.example.habitation.models;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.CpuUsageInfo;
+import android.util.Log;
 import android.widget.Toast;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,6 +33,11 @@ public class Habitation {
         this.nom = "maison";
     }
 
+    public Habitation(String nom){
+        this.pieces = new HashMap<>();
+        this.nom = nom;
+    }
+
     public Piece getPremierePiece(){
         return pieceDepart;
     }
@@ -43,14 +51,26 @@ public class Habitation {
     }
 
     public Piece getPiece(String nomPiece){
+        return this.pieces.get(nomPiece);
+    }
 
+    public void setPieceDepart(Piece pieceDep){
+        this.pieceDepart = pieceDep;
     }
 
     public void save(Context context) throws JSONException {
         JSONObject json = new JSONObject();
+        JSONArray arrayPieces = new JSONArray();
+
+        for(Piece piece : this.pieces.values()){
+            Log.i("test2", piece.getNom()+"");
+            arrayPieces.put(piece.toJSON());
+        }
+
         json.put("nom", this.nom);
-        json.put("pieces", this.pieces);
-        json.put("pieceDepart", this.pieceDepart);
+        json.put("pieces", arrayPieces);
+        json.put("pieceDepart", this.pieceDepart.getNom());
+
         try{
             FileOutputStream fos = context.openFileOutput("habitation.data", MODE_PRIVATE);
             fos.write(json.toString().getBytes(StandardCharsets.UTF_8));
@@ -58,7 +78,6 @@ public class Habitation {
         }catch(IOException e){
             e.printStackTrace();
         }
-
     }
 
     public static Habitation load(Context context) throws JSONException {
@@ -75,6 +94,17 @@ public class Habitation {
         }
         Toast.makeText(context, jsonStr.toString(), Toast.LENGTH_SHORT).show();
         JSONObject json = new JSONObject(jsonStr.toString());
+
+
+        String nom = json.getString("nom");
+
+        Habitation hab = new Habitation(nom);
+        JSONArray array = json.getJSONArray("pieces");
+        for(int i = 0; i<array.length(); i++) hab.ajouterPiece(Piece.jsonToPiece(array.getJSONObject(i)));
+
+        String pieceDep = json.getString("pieceDepart");
+        hab.setPieceDepart(hab.getPiece(pieceDep));
+
         return new Habitation();
     }
 

@@ -58,13 +58,12 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         sAccelerometre = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sMagnetometre = sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
-        sm.registerListener(this, sAccelerometre, SensorManager.SENSOR_DELAY_NORMAL);
-        sm.registerListener(this, sMagnetometre, SensorManager.SENSOR_DELAY_NORMAL);
+        sm.registerListener(this, sAccelerometre, SensorManager.SENSOR_DELAY_FASTEST);
+        sm.registerListener(this, sMagnetometre, SensorManager.SENSOR_DELAY_FASTEST);
 
 
         numFacadeActu = 0;
         facadeActu = new Facade[4];
-        images = Arrays.asList(findViewById(R.id.imageView_1), findViewById(R.id.imageView_1), findViewById(R.id.imageView_1), findViewById(R.id.imageView_1));
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {

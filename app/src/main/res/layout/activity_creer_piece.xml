@@ -7,32 +7,15 @@
         android:layout_height="match_parent"
         tools:context=".CreerPieceActivity">
 
-    <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView_1"
-            android:onClick="OnPhotoClick"
-            app:layout_constraintTop_toBottomOf="@+id/nom_piece_input"
-            app:layout_constraintEnd_toStartOf="@+id/imageView_4" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="50dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView_4" android:layout_marginEnd="55dp"
-            app:layout_constraintVertical_bias="1.0"/>
-    <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView_4"
-            android:onClick="OnPhotoClick"
-            app:layout_constraintTop_toBottomOf="@+id/nom_piece_input"
-            app:layout_constraintStart_toEndOf="@+id/imageView_1" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="72dp" app:layout_constraintBottom_toTopOf="@+id/canvas_bousole"
-            android:layout_marginEnd="47dp"/>
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/nom_piece_input"
-            android:layout_marginTop="110dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toTopOf="@+id/imageView_4"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="32dp" android:layout_marginEnd="32dp"
-    >
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="24dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/imageView" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="30dp" android:layout_marginEnd="30dp">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -40,19 +23,30 @@
                 android:hint="nom de la piece"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.example.habitation.views.Canvas android:layout_width="200dp" android:layout_height="200dp"
+    <com.example.habitation.views.Canvas android:layout_width="156dp" android:layout_height="143dp"
                                          android:id="@+id/canvas_bousole"
-                                         app:layout_constraintTop_toBottomOf="@+id/imageView_4"
-                                         android:layout_marginBottom="71dp" app:layout_constraintEnd_toEndOf="parent"
-                                         app:layout_constraintBottom_toTopOf="@+id/button"
+                                         app:layout_constraintTop_toBottomOf="@+id/imageView"
+                                         app:layout_constraintEnd_toStartOf="@+id/button"
+                                         android:layout_marginBottom="32dp"
                                          app:layout_constraintStart_toStartOf="parent"
-                                         app:layout_constraintHorizontal_bias="0.497"/>
+                                         android:layout_marginStart="32dp"
+                                         app:layout_constraintBottom_toBottomOf="parent" android:layout_marginEnd="37dp"
+    />
     <Button
             android:text="Confirmer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/button"
             android:onClick="OnConfirmClick"
-            app:layout_constraintTop_toBottomOf="@+id/canvas_bousole" android:layout_marginBottom="56dp"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_marginTop="51dp"
+            app:layout_constraintStart_toEndOf="@+id/canvas_bousole" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/canvas_bousole" android:layout_marginEnd="60dp"
+    />
+    <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/nom_piece_input"
+            android:layout_marginBottom="4dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/canvas_bousole" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="70dp" android:layout_marginEnd="70dp"
+            app:layout_constraintHorizontal_bias="1.0"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

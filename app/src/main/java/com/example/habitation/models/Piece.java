@@ -1,15 +1,17 @@
 package com.example.habitation.models;
 
+import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Piece implements ConvertibleJSON<Piece>{
+public class Piece implements ConvertibleJSON{
 
     private String nom;
     private Facade[] facades; //Ordre 0:Nord 1:Est 2:Sud 3:Ouest
 
     public Piece(Facade[] facades, String nom) {
+        this.nom = nom;
         this.facades = facades;
     }
 
@@ -37,6 +39,7 @@ public class Piece implements ConvertibleJSON<Piece>{
         JSONObject json = new JSONObject();
         JSONArray jsonFacades = new JSONArray();
 
+        Log.i("test", this.nom+"");
         for (Facade facade : facades) {
             jsonFacades.put(facade.toJSON());
         }
@@ -47,11 +50,13 @@ public class Piece implements ConvertibleJSON<Piece>{
         return json;
     }
 
-    @Override
-    public Piece toObject(JSONObject jsonObject) throws JSONException {
-        this.nom = (String) jsonObject.get("nompiece");
-        this.facades = new Facade[4];
+    public static Piece jsonToPiece(JSONObject jsonObject) throws JSONException {
+        String nom = (String) jsonObject.get("nompiece");
+        Facade[] facades = new Facade[4];
+
         JSONArray array = (JSONArray) jsonObject.get("facades");
-        return null;
+        for(int i = 0; i<array.length(); i++) facades[i] = Facade.jsonToFacade(array.getJSONObject(i));
+
+        return new Piece(facades, nom);
     }
 }
