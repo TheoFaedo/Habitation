@@ -11,7 +11,6 @@ import com.example.habitation.R;
 public class Canvas extends View{
     private Paint paint;
     private float orientationBousole;
-    private Bitmap image;
 
     float time;
 
@@ -34,7 +33,6 @@ public class Canvas extends View{
         paint.setDither(true);
         paint.setTextSize(80);
         this.orientationBousole = 1.5f;
-        this.image = BitmapFactory.decodeResource(getResources(), R.drawable.wind_rose);
     }
 
     @SuppressLint("DrawAllocation")

@@ -3,6 +3,7 @@ package com.example.habitation;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -10,10 +11,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,23 +20,17 @@ import com.example.habitation.models.GestionnaireNavigation;
 import com.example.habitation.models.Piece;
 import com.example.habitation.views.Canvas;
 import com.google.android.material.textfield.TextInputLayout;
-import org.json.JSONObject;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class CreerPieceActivity extends AppCompatActivity implements SensorEventListener {
 
     private ActivityResultLauncher<Intent> launcher;
-    private Facade[] facadeActu;
-
-    private int numFacadeActu;
 
     private TextInputLayout inputNomPiece;
-
-    private List<ImageView> images;
-    private ImageView imageActu;
+    private Bitmap[] bitmapTable;
+    private String orientationPhoto;
 
     //Capteurs
     private SensorManager sm;
@@ -51,6 +43,13 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        bitmapTable = new Bitmap[]{
+                BitmapFactory.decodeResource(getResources(), R.drawable.no_photo),
+                BitmapFactory.decodeResource(getResources(), R.drawable.no_photo),
+                BitmapFactory.decodeResource(getResources(), R.drawable.no_photo),
+                BitmapFactory.decodeResource(getResources(), R.drawable.no_photo)};
+
         setContentView(R.layout.activity_creer_piece);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
@@ -62,26 +61,28 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         sm.registerListener(this, sMagnetometre, SensorManager.SENSOR_DELAY_FASTEST);
 
 
-        numFacadeActu = 0;
-        facadeActu = new Facade[4];
         launcher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    //récupération de l'image
-                    Bundle extra = result.getData().getExtras();
-                    Bitmap image = (Bitmap) extra.get("data");
+                    if(result!=null){
+                        //récupération de l'image
+                        Bundle extra = result.getData().getExtras();
+                        Bitmap image = (Bitmap) extra.get("data");
 
-                    //ajout dans le tableau
-                    imageActu.setImageBitmap(image);
+                        //ajout dans le tableau
+                        bitmapTable[pointCardToInt(this.orientationPhoto)] = image;
+                    }
                 }
         );
+
         inputNomPiece = findViewById(R.id.nom_piece_input);
 
         interval = System.currentTimeMillis();
     }
 
     public void OnPhotoClick(View v){
-        imageActu = (ImageView) v;
+        Canvas canvas = findViewById(R.id.canvas_bousole);
+        orientationPhoto = canvas.getPointCardinalActuel();
         Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         launcher.launch(i);
     }
@@ -89,8 +90,8 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
     public void OnConfirmClick(View v){
         String nomPiece = "Piece lambda";
         nomPiece = Objects.requireNonNull(Objects.requireNonNull(inputNomPiece.getEditText()).getText()).toString();
+        Facade[] facadeActu = new Facade[4];
         Piece p = new Piece(facadeActu, nomPiece);
-
         GestionnaireNavigation.getInstance().getHabitation().ajouterPiece(p);
 
         finish();
@@ -118,6 +119,7 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         if((System.currentTimeMillis() - interval)>16) {
             canvas.setOrientation(values[0]);
             canvas.invalidate();
+            refreshImage(canvas.getPointCardinalActuel());
         }
     }
 
@@ -126,18 +128,23 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
 
     }
 
-    private String pointCardinalActu(){
-        switch(numFacadeActu){
-            case 0:
-                return "Nord";
-            case 1 :
-                return "Est";
-            case 2 :
-                return "Sud";
-            case 3 :
-                return "Ouest";
+    private void refreshImage(String pointCard){
+        ImageView imageActu = findViewById(R.id.imageView);
+        imageActu.setImageBitmap(bitmapTable[pointCardToInt(pointCard)]);
+    }
+
+    private int pointCardToInt(String pointCard){
+        switch (pointCard){
+            case "Nord":
+                return 0;
+            case "Est":
+                return 1;
+            case "Sud":
+                return 2;
+            case "Ouest":
+                return 3;
         }
-        return "Ouest";
+        return -1;
     }
 
 }

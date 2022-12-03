@@ -43,10 +43,10 @@
     />
     <ImageView
             android:layout_width="0dp"
-            android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView"
+            android:layout_height="0dp" tools:srcCompat="@drawable/no_photo" android:id="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/nom_piece_input"
             android:layout_marginBottom="4dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/canvas_bousole" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="70dp" android:layout_marginEnd="70dp"
-            app:layout_constraintHorizontal_bias="1.0"/>
+            app:layout_constraintHorizontal_bias="1.0" android:onClick="OnPhotoClick"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
