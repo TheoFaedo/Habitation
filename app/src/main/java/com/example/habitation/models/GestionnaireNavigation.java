@@ -1,5 +1,6 @@
 package com.example.habitation.models;
 
+import android.content.Context;
 import android.view.View;
 
 public class GestionnaireNavigation {
@@ -10,12 +11,12 @@ public class GestionnaireNavigation {
     private Piece pieceActuelle;
     private Facade facadeActuelle;
 
-    private GestionnaireNavigation(){
-        this.habitation = new Habitation();
+    private GestionnaireNavigation(Context context){
+        this.habitation = Habitation.load(context);
     }
 
-    public static GestionnaireNavigation getInstance(){
-        if(instance == null) instance = new GestionnaireNavigation();
+    public static GestionnaireNavigation getInstance(Context context){
+        if(instance == null) instance = new GestionnaireNavigation(context);
         return instance;
     }
 

@@ -1,9 +1,14 @@
 package com.example.habitation.models;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +34,16 @@ public class Facade implements ConvertibleJSON{
 
     public void ajouterPieceAdjacente(Piece p){
         this.piecesAdjacentes.add(p.getNom());
+    }
+
+    public Bitmap getBitmap(Context context){
+        FileInputStream fis = null;
+        try {
+            fis = context.openFileInput(this.refImage+".data"); //On récupère l'image qui à été enregistrée
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return BitmapFactory.decodeStream(fis);
     }
 
     @Override

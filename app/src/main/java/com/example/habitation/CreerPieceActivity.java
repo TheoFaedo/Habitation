@@ -17,10 +17,13 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.habitation.models.Facade;
 import com.example.habitation.models.GestionnaireNavigation;
+import com.example.habitation.models.Habitation;
 import com.example.habitation.models.Piece;
 import com.example.habitation.views.Canvas;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +33,7 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
 
     private TextInputLayout inputNomPiece;
     private Bitmap[] bitmapTable;
+    private Bitmap noImage;
     private String orientationPhoto;
 
     //Capteurs
@@ -44,11 +48,13 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        noImage = BitmapFactory.decodeResource(getResources(), R.drawable.no_photo);
+
         bitmapTable = new Bitmap[]{
-                BitmapFactory.decodeResource(getResources(), R.drawable.no_photo),
-                BitmapFactory.decodeResource(getResources(), R.drawable.no_photo),
-                BitmapFactory.decodeResource(getResources(), R.drawable.no_photo),
-                BitmapFactory.decodeResource(getResources(), R.drawable.no_photo)};
+                null,
+                null,
+                null,
+                null};
 
         setContentView(R.layout.activity_creer_piece);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -57,8 +63,8 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         sAccelerometre = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sMagnetometre = sm.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
-        sm.registerListener(this, sAccelerometre, SensorManager.SENSOR_DELAY_FASTEST);
-        sm.registerListener(this, sMagnetometre, SensorManager.SENSOR_DELAY_FASTEST);
+        sm.registerListener(this, sAccelerometre, SensorManager.SENSOR_DELAY_NORMAL);
+        sm.registerListener(this, sMagnetometre, SensorManager.SENSOR_DELAY_NORMAL);
 
 
         launcher = registerForActivityResult(
@@ -91,8 +97,15 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         String nomPiece = "Piece lambda";
         nomPiece = Objects.requireNonNull(Objects.requireNonNull(inputNomPiece.getEditText()).getText()).toString();
         Facade[] facadeActu = new Facade[4];
+        for(int i =0; i< facadeActu.length; i++){
+            facadeActu[i] = new Facade(nomPiece+"_"+i);
+        }
+        enregistrerTableauBitmap(nomPiece);
         Piece p = new Piece(facadeActu, nomPiece);
-        GestionnaireNavigation.getInstance().getHabitation().ajouterPiece(p);
+        Habitation hab = GestionnaireNavigation.getInstance(this).getHabitation();
+        hab.ajouterPiece(p);
+        if(hab.getPieceDepart()==null) hab.setPieceDepart(p);
+        hab.save(this);
 
         finish();
     }
@@ -130,7 +143,9 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
 
     private void refreshImage(String pointCard){
         ImageView imageActu = findViewById(R.id.imageView);
-        imageActu.setImageBitmap(bitmapTable[pointCardToInt(pointCard)]);
+        Bitmap bm = bitmapTable[pointCardToInt(pointCard)];
+        if(bm==null) bm = BitmapFactory.decodeResource(getResources(), R.drawable.no_photo);
+        imageActu.setImageBitmap(bm);
     }
 
     private int pointCardToInt(String pointCard){
@@ -145,6 +160,31 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
                 return 3;
         }
         return -1;
+    }
+
+    private boolean verifSiToutePhotosPrises(){
+        for(Bitmap b : bitmapTable){
+            if(b==null) return false;
+        }
+        return true;
+    }
+
+    private void enregistrerBitmap(Bitmap b, String nomImage){
+        //compréssion et stockage de l'image (tester).
+        try{
+            FileOutputStream fos = openFileOutput(nomImage+".data", MODE_PRIVATE);
+            b.compress(Bitmap.CompressFormat.PNG, 100, fos); //On compresse l'image récupérée
+            fos.flush();
+            fos.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void enregistrerTableauBitmap(String nomPiece){
+        for(int i=0; i<bitmapTable.length; i++){
+            enregistrerBitmap(bitmapTable[i], nomPiece+"_"+i);
+        }
     }
 
 }
