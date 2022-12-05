@@ -38,6 +38,7 @@ public class Habitation {
     public Habitation(String nom){
         this.pieces = new HashMap<>();
         this.nom = nom;
+        this.pieceDepart = null;
     }
 
     public Piece getPremierePiece(){
@@ -79,13 +80,22 @@ public class Habitation {
             //Ajout de chaques propriété dans le champs correspondant à son nom;
             json.put("nom", this.nom);
             json.put("pieces", arrayPieces);
-            json.put("pieceDepart", this.pieceDepart.getNom());
+
+            String nomPieceDepart;
+            if(this.pieceDepart==null){
+                nomPieceDepart = "undefined";
+            }else{
+                nomPieceDepart = this.pieceDepart.getNom();
+            }
+            json.put("pieceDepart", nomPieceDepart);
+            Log.i("lala", "salut");
 
             //Ecriture des données dans un fichier
             FileOutputStream fos = context.openFileOutput("habitation.data", MODE_PRIVATE);
             fos.write(json.toString().getBytes(StandardCharsets.UTF_8));
             fos.flush();
             fos.close();
+            Toast.makeText(context, "sauvegarde", Toast.LENGTH_LONG).show();
         }catch(IOException | JSONException e){
             Toast.makeText(context, "erreur dans la sauvegarde", Toast.LENGTH_LONG).show();
         }

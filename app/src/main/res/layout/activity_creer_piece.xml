@@ -26,7 +26,7 @@
     <com.example.habitation.views.Canvas android:layout_width="156dp" android:layout_height="143dp"
                                          android:id="@+id/canvas_bousole"
                                          app:layout_constraintTop_toBottomOf="@+id/imageView"
-                                         app:layout_constraintEnd_toStartOf="@+id/button"
+                                         app:layout_constraintEnd_toStartOf="@+id/button_confirm"
                                          android:layout_marginBottom="32dp"
                                          app:layout_constraintStart_toStartOf="parent"
                                          android:layout_marginStart="32dp"
@@ -35,15 +35,15 @@
     <Button
             android:text="Confirmer"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/button"
+            android:layout_height="wrap_content" android:id="@+id/button_confirm"
             android:onClick="OnConfirmClick"
             android:layout_marginTop="51dp"
             app:layout_constraintStart_toEndOf="@+id/canvas_bousole" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/canvas_bousole" android:layout_marginEnd="60dp"
-            android:visibility="visible" android:checkable="false"/>
+            android:visibility="visible" android:checkable="false" android:clickable="false"/>
     <ImageView
-            android:layout_width="293dp"
-            android:layout_height="430dp" tools:srcCompat="@drawable/no_photo" android:id="@+id/imageView"
+            android:layout_width="270dp"
+            android:layout_height="446dp" tools:srcCompat="@drawable/no_photo" android:id="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/nom_piece_input"
             android:layout_marginBottom="4dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/canvas_bousole" app:layout_constraintStart_toStartOf="parent"

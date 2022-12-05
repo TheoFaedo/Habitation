@@ -11,6 +11,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -31,7 +32,12 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
 
     private ActivityResultLauncher<Intent> launcher;
 
+    //Views
     private TextInputLayout inputNomPiece;
+
+    private Button boutonConfirm;
+
+    //Proprietes photo
     private Bitmap[] bitmapTable;
     private Bitmap noImage;
     private String orientationPhoto;
@@ -82,7 +88,9 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         );
 
         inputNomPiece = findViewById(R.id.nom_piece_input);
+        boutonConfirm = findViewById(R.id.button_confirm);
 
+        boutonConfirm.setEnabled(false);
         interval = System.currentTimeMillis();
     }
 
@@ -129,10 +137,11 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         SensorManager.getRotationMatrix(resultMatrix, null, accelerometerVector, magneticVector);
         SensorManager.getOrientation(resultMatrix, values);
 
-        if((System.currentTimeMillis() - interval)>16) {
+        if((System.currentTimeMillis() - interval)>30) {
             canvas.setOrientation(values[0]);
             canvas.invalidate();
             refreshImage(canvas.getPointCardinalActuel());
+            setActivationDuBouton();
         }
     }
 
@@ -184,6 +193,14 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
     private void enregistrerTableauBitmap(String nomPiece){
         for(int i=0; i<bitmapTable.length; i++){
             enregistrerBitmap(bitmapTable[i], nomPiece+"_"+i);
+        }
+    }
+
+    private void setActivationDuBouton(){
+        if(verifSiToutePhotosPrises() && !Objects.requireNonNull(inputNomPiece.getEditText()).toString().equals("")){
+            boutonConfirm.setEnabled(true);
+        }else{
+            boutonConfirm.setEnabled(false);
         }
     }
 

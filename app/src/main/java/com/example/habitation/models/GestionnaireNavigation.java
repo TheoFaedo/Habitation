@@ -17,7 +17,7 @@ public class GestionnaireNavigation {
 
     public static GestionnaireNavigation getInstance(Context context){
         if(instance == null) instance = new GestionnaireNavigation(context);
-        return instance;
+        return instance;²
     }
 
     public void actualiserAffichage(Facade facadeActuelle){

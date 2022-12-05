@@ -20,9 +20,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Habitation hab = GestionnaireNavigation.getInstance(this).getHabitation();
-
-        Toast.makeText(this, hab.getPieceDepart().getNom(), Toast.LENGTH_SHORT).show();
+        if(GestionnaireNavigation.getInstance(this).getHabitation() == null){
+            Habitation hab = new Habitation("maison");
+            hab.save(MainActivity.this);
+        }
     }
 
     public void OnEditClick(View v){

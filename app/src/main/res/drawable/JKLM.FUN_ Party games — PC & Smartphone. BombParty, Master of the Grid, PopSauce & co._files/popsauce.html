@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://phoenix.jklm.fun/games/popsauce/ -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="./fonts(1).css">
+  <link rel="stylesheet" href="./base(1).css">
+  <link rel="stylesheet" href="./game.css">
+  <link rel="stylesheet" href="./popsauce.css">
+</head>
+
+<body>
+  <div class="loading page" hidden="">
+    <div data-text="loading">Loading…</div>
+  </div>
+  <div class="main page">
+    <div class="top" hidden="">
+      <header class="status">⏱️ La partie commence dans 0s !</header>
+      <div class="startRoundNow" hidden="">&nbsp;<a href="https://phoenix.jklm.fun/games/popsauce/#" data-text="startNow">Démarrer</a></div>
+    </div>
+    <div class="restAndScoreboard">
+      <div class="middleAndBottom">
+        <div class="middle">
+          <div class="darkSettings rules darkScrollbar" hidden="">
+            <div class="tutorial">
+              <header data-text="howToPlay">Comment jouer</header>
+              <p data-text="guessQuotes">Devinez d'où vient chaque citation ou image. Le plus vite vous trouvez la réponse, le plus vous recevez de points !</p>
+            </div>
+            <fieldset disabled="">
+              <div class="setting rule dictionaryId">
+                <div class="label" data-text="languageRuleLabel">👄 Langue</div>
+                <div class="field"><select><option value="de">German</option><option value="en">Anglais</option><option value="es">Spanish</option><option value="fr">Français</option><option value="hu">Hungarian</option></select></div>
+              </div>
+              <div class="setting rule tags">
+                <div class="label" data-text="tagFilteringRuleLabel">🏷️ Filtrage par catégorie</div>
+                <div class="info">
+                  <span data-text="tagFilteringRuleInfo">Seuls les challenges qui correspondent à ces filtres seront piochés. Actuellement actifs :</span>
+                  <span class="filteredQuoteCount">4266</span> <span data-text="outOf">sur</span> <span class="totalQuoteCount">9744</span>.</div>
+                <div class="field">
+                  <div class="list darkScrollbar"><div class="item union" data-tag="Grand public" title="Union (inclure les challenges avec cette catégorie)"><div class="op">∪</div><div class="tag">Grand public</div><div class="actions"><button class="remove">✖</button></div></div><div class="item difference" data-tag="Difficile" title="Difference (exclure les challenges avec cette catégorie)"><div class="op">∖</div><div class="tag">Difficile</div><div class="actions"><button class="remove">✖</button></div></div></div>
+
+                  <div class="insert">
+                    <datalist id="quoteTags"><option>Grand public</option><option>Facile</option><option>Moyen</option><option>Difficile</option><option>1940s</option><option>1950s</option><option>1960s</option><option>1970s</option><option>1980s</option><option>1990s</option><option>Animaux</option><option>Anime &amp; Manga</option><option>Architecture</option><option>Art</option><option>Associations</option><option>Bandes dessinées</option><option>Belgique</option><option>Capitales</option><option>Catch</option><option>Chanson française</option><option>Dessins animés</option><option>Drapeaux</option><option>Drapeaux locaux</option><option>Films</option><option>Films d'animation</option><option>Football</option><option>Game of Thrones</option><option>Géographie</option><option>Héraldique</option><option>Informatique</option><option>Internet &amp; Mèmes</option><option>J-pop</option><option>Jeux de société</option><option>Jeux indé</option><option>Jeux vidéo</option><option>K-pop</option><option>Littérature</option><option>Logiciels &amp; Apps</option><option>Logos</option><option>Marques</option><option>Musique</option><option>Nature</option><option>Obscur</option><option>Paroles</option><option>Pays du monde</option><option>Personnages fictifs</option><option>Personnalités</option><option>Pokémon</option><option>Politique</option><option>Rap anglosaxon</option><option>Rap francophone</option><option>Rétrogaming</option><option>Sport</option><option>Streaming &amp; Vidéo</option><option>Super-héros</option><option>Séries</option><option>The Witcher</option><option>Télévision</option><option>Villes</option></datalist>
+                    <input type="text" list="quoteTags">
+                    <button class="addUnion" title="Union (inclure les challenges avec cette catégorie)" data-title-text="filterUnion">∪</button>
+                    <button class="addIntersection" title="Intersection (seulement challenges avec cette catégorie)" data-title-text="filterIntersection">∩</button>
+                    <button class="addDifference" title="Difference (exclure les challenges avec cette catégorie)" data-title-text="filterDifference">∖</button>
+                  </div>
+                </div>
+              </div>
+              <div class="setting rule scoreGoal">
+                <div class="label" data-text="scoreGoalRuleLabel">🎯 Limite de score (points)</div>
+                <div class="info" data-text="scoreGoalRuleInfo">Le premier joueur à atteindre ce score gagne la partie.</div>
+                <div class="field range"><input type="number" min="50" max="1000" step="10"><input type="range" min="50" max="1000" step="10"></div>
+              </div>
+              <div class="setting rule scoring">
+                <div class="label" data-text="scoringRuleLabel">🎲 Mode de scoring</div>
+                <div class="info" data-text="scoringRuleInfo">Contrôle comment les points sont attribués.</div>
+                <div class="field">
+                  <select>
+                    <option value="timeBased" data-text="fastestAnswersGetMorePoints">Les réponses rapides donnent plus de points</option>
+                    <option value="constant" data-text="samePoints">Toutes les réponses valent 10 points</option>
+                  </select>
+                </div>
+              </div>
+              <div class="setting rule challengeDuration">
+                <div class="label" data-text="challengeDurationRuleLabel">⏲ Durée des challenges (secondes)</div>
+                <div class="info" data-text="challengeDurationRuleInfo">Vous avez ce délai pour deviner la réponse.</div>
+                <div class="field range"><input type="number" min="5" max="30"><input type="range" min="5" max="30"></div>
+              </div>
+              <div class="setting rule shorthands">
+                <div class="label" data-text="shorthandsRuleLabel">✂️ Raccourcis</div>
+                <div class="info" data-text="shorthandsRuleInfo">Autoriser ou non les abréviations courantes et les orthographes alternatives.</div>
+                <div class="field radio">
+                  <input type="radio" name="shorthand" value="allow" id="shorthandAccepted"><label for="shorthandAccepted" data-text="allow">Autoriser</label><input type="radio" name="shorthand" value="reject" id="shorthandRejected"><label for="shorthandRejected" data-text="reject">Refuser</label>
+                </div>
+              </div>
+              <div class="setting rule visibleGuesses">
+                <div class="label" data-text="visibleGuessesRuleLabel">🔍 Visibilité des mauvaises réponses</div>
+                <div class="info" data-text="visibleGuessesRuleInfo">Afficher ou non les mauvaises réponses des autres joueurs.</div>
+                <div class="field radio">
+                  <input type="radio" name="visibleGuesses" value="public" id="visibleGuessesVisible"><label for="visibleGuessesVisible" data-text="show">Afficher</label><input type="radio" name="visibleGuesses" value="private" id="visibleGuessesHidden"><label for="visibleGuessesHidden" data-text="hide">Cacher</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="content">
+            <div class="challengeArea">
+              <div class="quickRules">
+                <div class="summary"><span class="dictionary">French</span> (<span class="scoreGoal">100</span> points)</div>
+                <button class="toggleRules">Afficher les règles</button>
+              </div>
+              <div class="seating" hidden="">
+                <div class="logo" hidden="">
+                  <img src="./logo.png" width="480" height="240">
+                </div>
+                <div class="lastRound">
+                  <div class="winnerPicture">
+                    <img src="./guest(1).png">
+                    <div class="medal">🥇</div>
+                  </div>
+                  <div class="winnerNickname">Nicolas</div>
+                  <div data-text="wonTheLastRound">a gagné la partie !</div>
+                </div>
+              </div>
+              <div class="round">
+                <div class="loading" data-text="loading" hidden="">Loading…</div>
+                <div class="challenge">
+                  <div class="header">
+                    <span class="prompt">De quel film ça vient ?</span>
+                    <span class="timer">8s restantes.</span>
+                  </div>
+                  <div class="textScroll darkScrollbar" hidden="">
+                    <div class="text">Il n'est pas né celui qui me forcera à me laver, si je n'en ai pas envie !</div>
+                  </div>
+                  <div class="image">
+                    <div class="actual" style="background-image: url(&quot;blob:https://phoenix.jklm.fun/12a77735-13de-4606-add9-5b7bf571a2f6&quot;);"></div>
+                  </div>
+                </div>
+                <div class="challengeResult" hidden="">
+                  <div class="resultBox">
+                    <div class="source">
+                      <div data-text="theAnswerWas">La réponse était</div>
+                      <div class="value">Rick et Morty</div>
+                    </div>
+                    <div class="details">Rick et Morty est une série d'animation pour adultes américaine créée par Justin Roiland et Dan Harmon.</div>
+                  </div>
+                  <div class="fastest">IstiQI a trouvé en premier.</div>
+                  <div class="submitter">Soumis par Luc`.</div>
+                  <div class="imageCredits"></div>
+                </div>
+              </div>
+            </div>
+            <div class="scoreboard lower darkScrollbar"><div class="entry isOnline" title="Nicolas"><img class="picture" src="./guest(1).png"><div class="score"><span>91</span></div><div class="text"><div class="nickname">Nicolas</div><div class="guess"></div></div></div><div class="entry isOnline" title="Hortense"><img class="picture" src="./guest(1).png"><div class="score"><span>78</span></div><div class="text"><div class="nickname">Hortense</div><div class="guess">after</div></div></div><div class="entry isOnline" title="IstiQI"><img class="picture" src="./guest(1).png"><div class="score"><span>58</span></div><div class="text"><div class="nickname">IstiQI</div><div class="guess"></div></div></div></div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="join" hidden="">
+            <button class="styled joinRound" data-text="joinGame">Rejoindre la partie</button>
+          </div>
+          <div class="joined">
+            <div class="seating" hidden="">
+              <span data-text="youAreIn">Envoie la sauce !</span>
+              <button class="styled red leaveRound" data-text="leaveGame" hidden="">Quitter la partie</button>
+            </div>
+            <form class="round guessing">
+              <input type="text" minlength="1" maxlength="50" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="styled">
+            </form>
+            <div class="round doneGuessing" hidden="">Vous n'avez pas trouvé.</div>
+          </div>
+        </div>
+      </div>
+      <div class="scoreboard right darkScrollbar"><div class="entry isOnline" title="Nicolas"><img class="picture" src="./guest(1).png"><div class="score"><span>91</span></div><div class="text"><div class="nickname">Nicolas</div><div class="guess"></div></div></div><div class="entry isOnline" title="Hortense"><img class="picture" src="./guest(1).png"><div class="score"><span>78</span></div><div class="text"><div class="nickname">Hortense</div><div class="guess">after</div></div></div><div class="entry isOnline" title="IstiQI"><img class="picture" src="./guest(1).png"><div class="score"><span>58</span></div><div class="text"><div class="nickname">IstiQI</div><div class="guess"></div></div></div></div>
+    </div>
+  </div>
+
+  <script src="./socket.io.js(1).téléchargement"></script>
+  <script src="./dom.js(1).téléchargement"></script>
+  <script src="./utils.js.téléchargement"></script>
+  <script src="./audio.js.téléchargement"></script><div style="position: absolute; right: 0px; top: 0px; padding: 0.5em; margin: 0.5em; background: rgb(255, 255, 255); border-radius: 2em; opacity: 0.2;" hidden="">🔇</div>
+  <script src="./gfx.js.téléchargement"></script>
+  <script src="./getPostJson.js(1).téléchargement"></script>
+  <script src="./math.js.téléchargement"></script>
+  <script src="./text.js(1).téléchargement"></script>
+  <script src="./game.js.téléchargement"></script>
+  <script src="./popsauce.js.téléchargement"></script>
+
+
+
+</body></html>
