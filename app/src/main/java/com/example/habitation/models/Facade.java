@@ -16,7 +16,7 @@ import java.util.List;
 public class Facade implements ConvertibleJSON{
 
     private String refImage; //Lorsque qu'on prends la photo, on la stocke avec un certains nom, (<nompiece><orientationFacade>) qui correspond donc à cet attribut
-    private List<String> piecesAdjacentes; //On enregristre le nom de chaques pieces
+    private List<String> piecesAdjacentes; //Liste des noms de chaques pieces asdjacentes (accessibles via une porte)
 
     public Facade(String refImage){
         this.refImage = refImage;
@@ -34,6 +34,10 @@ public class Facade implements ConvertibleJSON{
 
     public void ajouterPieceAdjacente(Piece p){
         this.piecesAdjacentes.add(p.getNom());
+    }
+
+    public String getRefImage(){
+        return this.refImage;
     }
 
     public Bitmap getBitmap(Context context){

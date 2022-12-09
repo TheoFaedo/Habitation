@@ -6,4 +6,6 @@
     <string name="nord">Nord</string>
     <string name="est">Est</string>
     <string name="ouest">Ouest</string>
+    <string name="left_arrow"><![CDATA[<]]></string>
+    <string name="right_arrow"><![CDATA[>]]></string>
 </resources>

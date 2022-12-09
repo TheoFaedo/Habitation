@@ -5,6 +5,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Piece implements ConvertibleJSON{
 
     private String nom;
@@ -23,11 +26,21 @@ public class Piece implements ConvertibleJSON{
     }
 
     public Facade getGauche(Facade f){
-        return null;
+        List<Facade> facadeList = Arrays.asList(this.facades);
+        int indexFacade = facadeList.indexOf(f);
+
+        if(indexFacade==0) indexFacade = 3;
+        else indexFacade--;
+        return facadeList.get(indexFacade);
     }
 
     public Facade getDroite(Facade f){
-        return null;
+        List<Facade> facadeList = Arrays.asList(this.facades);
+        int indexFacade = facadeList.indexOf(f);
+
+        if(indexFacade==3) indexFacade = 0;
+        else indexFacade++;
+        return facadeList.get(indexFacade);
     }
 
     public Facade getFacadeNord(){

@@ -182,7 +182,7 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         //compréssion et stockage de l'image (tester).
         try{
             FileOutputStream fos = openFileOutput(nomImage+".data", MODE_PRIVATE);
-            b.compress(Bitmap.CompressFormat.PNG, 100, fos); //On compresse l'image récupérée
+            b.compress(Bitmap.CompressFormat.PNG, 10, fos); //On compresse l'image récupérée
             fos.flush();
             fos.close();
         }catch(IOException e){
