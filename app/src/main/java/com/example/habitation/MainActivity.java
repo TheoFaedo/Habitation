@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if(GestionnaireNavigation.getInstance(this).getHabitation() == null){
-            Habitation hab = new Habitation("maison");
+            Habitation hab = new Habitation("undefined");
             hab.save(MainActivity.this);
         }
     }
@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnVisitClick(View v){
-        startActivity(new Intent(this, VisitActivity.class));
+        if(GestionnaireNavigation.getInstance(this).getHabitation().toString().equals("undefined")){
+            Toast.makeText(this, "Aucune habitation n'a encore été créée", Toast.LENGTH_LONG).show();
+        }else{
+            startActivity(new Intent(this, VisitActivity.class));
+        }
     }
 }

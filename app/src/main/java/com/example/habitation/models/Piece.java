@@ -18,8 +18,13 @@ public class Piece implements ConvertibleJSON{
         this.facades = facades;
     }
 
-    public Piece(){
+    public Piece(String nom){
+        this.nom = nom;
+        this.facades = new Facade[]{new Facade("this.nom" + 0), new Facade("this.nom" + 1), new Facade("this.nom" + 2), new Facade("this.nom" + 3)};
+    }
 
+    public Piece(){
+        this.facades = new Facade[4];
     }
     public String getNom(){
         return this.nom;

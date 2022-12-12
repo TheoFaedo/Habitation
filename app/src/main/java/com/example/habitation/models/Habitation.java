@@ -65,6 +65,10 @@ public class Habitation {
         this.pieceDepart = pieceDep;
     }
 
+    public void setNom(String nom){
+        this.nom = nom;
+    }
+
     public void save(Context context) {
         try{
             //Initialisation des objets JSON
@@ -88,7 +92,6 @@ public class Habitation {
                 nomPieceDepart = this.pieceDepart.getNom();
             }
             json.put("pieceDepart", nomPieceDepart);
-            Log.i("lala", "salut");
 
             //Ecriture des données dans un fichier
             FileOutputStream fos = context.openFileOutput("habitation.data", MODE_PRIVATE);
@@ -128,7 +131,7 @@ public class Habitation {
             return hab;
 
         } catch (IOException | JSONException e) {
-            Toast.makeText(context, "erreur dans le chargement", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return null;
     }

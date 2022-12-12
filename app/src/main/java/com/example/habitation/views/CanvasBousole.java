@@ -6,20 +6,19 @@ import android.graphics.*;
 import android.util.AttributeSet;
 import android.view.View;
 import androidx.annotation.Nullable;
-import com.example.habitation.R;
 
-public class Canvas extends View{
+public class CanvasBousole extends View{
     private Paint paint;
     private float orientationBousole;
 
     float time;
 
-    public Canvas(Context context) {
+    public CanvasBousole(Context context) {
         super(context);
         init();
     }
 
-    public Canvas(Context context, @Nullable AttributeSet attrs) {
+    public CanvasBousole(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
@@ -43,7 +42,6 @@ public class Canvas extends View{
         float middlex = getWidth()/2f;
         float middley = getHeight()/2f;
 
-        canvas.drawColor(Color.WHITE);
         paint.setColor(Color.GRAY);
         canvas.drawCircle(middlex, middley, middlex-60, paint);
         paint.setColor(Color.WHITE);
@@ -63,6 +61,7 @@ public class Canvas extends View{
 
         paint.setColor(Color.RED);
         paint.setTextSize(38);
+
         @SuppressLint("DrawAllocation")
         Rect textBounds = new Rect();
         paint.getTextBounds("N", 0, 1, textBounds);

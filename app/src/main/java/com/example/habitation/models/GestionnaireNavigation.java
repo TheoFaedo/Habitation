@@ -41,6 +41,15 @@ public class GestionnaireNavigation {
         actualiserAffichage(imageActuelle, context);
     }
 
+    public void setPieceActuelle(String nomDeLaPiece){
+        this.pieceActuelle = this.habitation.getPiece(nomDeLaPiece);
+        this.facadeActuelle = this.pieceActuelle.getFacadeNord();
+    }
+
+    public Facade getFacadeActuelle(){
+        return this.facadeActuelle;
+    }
+
     public Habitation getHabitation() {
         return habitation;
     }
