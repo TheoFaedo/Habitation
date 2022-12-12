@@ -15,6 +15,7 @@ public class GestionnaireNavigation {
 
     private GestionnaireNavigation(Context context){
         this.habitation = Habitation.load(context);
+        if(this.habitation == null) this.habitation = new Habitation("undefined");
     }
 
     public static GestionnaireNavigation getInstance(Context context){
@@ -52,5 +53,9 @@ public class GestionnaireNavigation {
 
     public Habitation getHabitation() {
         return habitation;
+    }
+
+    public void setHabitation(Habitation hab){
+        this.habitation = hab;
     }
 }

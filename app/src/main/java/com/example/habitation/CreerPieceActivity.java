@@ -143,6 +143,9 @@ public class CreerPieceActivity extends AppCompatActivity implements SensorEvent
         hab.setNom("maison");
         hab.save(this);
 
+        GestionnaireNavigation gestionnaireNavigation = GestionnaireNavigation.getInstance(this);
+        gestionnaireNavigation.setHabitation(hab);
+
         finish();
     }
 
