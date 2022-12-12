@@ -15,7 +15,7 @@
         <ImageView
                 android:layout_height="match_parent" tools:srcCompat="@drawable/no_photo" android:id="@+id/imageView"
                 android:onClick="OnPhotoClick"
-                android:layout_width="match_parent" android:layout_marginTop="100dp"
+                android:layout_width="match_parent" android:layout_marginTop="110dp"
                 android:layout_marginBottom="188dp"/>
         <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="200dp"
@@ -31,14 +31,14 @@
                     android:layout_height="match_parent"
                     android:hint="nom de la piece"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <com.example.habitation.views.CanvasBousole android:layout_width="165dp" android:layout_height="170dp"
-                                                    android:id="@+id/canvas_bousole"
-                                                    android:layout_marginBottom="5dp"
-                                                    android:layout_marginStart="5dp"
-                                                    android:layout_marginEnd="10dp"
-                                                    android:layout_alignParentRight="false"
-                                                    android:layout_alignParentBottom="true"
-                                                    android:layout_alignParentLeft="true"/>
+        <com.example.habitationapp.views.CanvasBousole android:layout_width="165dp" android:layout_height="170dp"
+                                                       android:id="@+id/canvas_bousole"
+                                                       android:layout_marginBottom="5dp"
+                                                       android:layout_marginStart="5dp"
+                                                       android:layout_marginEnd="10dp"
+                                                       android:layout_alignParentRight="false"
+                                                       android:layout_alignParentBottom="true"
+                                                       android:layout_alignParentLeft="true"/>
         <ScrollView
                 android:layout_width="155dp"
                 android:layout_height="87dp"

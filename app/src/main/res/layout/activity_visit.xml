@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".VisitActivity" android:id="@+id/layoutCon">
+        tools:context=".VisitActivity" android:id="@+id/layoutCon" android:background="#000000">
     <RelativeLayout
             android:id="@+id/relativeLayout" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -18,10 +18,10 @@
                 android:layout_height="wrap_content" app:srcCompat="@drawable/no_photo" android:id="@+id/image_actuelle"
                 android:foregroundGravity="center_vertical|center|center_horizontal"
                 android:layout_centerInParent="true"/>
-        <com.example.habitation.views.CanvasPorte android:layout_width="match_parent"
-                                                  android:layout_height="match_parent" android:id="@+id/canvasPorte">
+        <com.example.habitationapp.views.CanvasPorte android:layout_width="match_parent"
+                                                     android:layout_height="match_parent" android:id="@+id/canvasPorte">
 
-        </com.example.habitation.views.CanvasPorte>
+        </com.example.habitationapp.views.CanvasPorte>
         <Button
                 android:text="@string/right_arrow"
                 android:layout_width="90dp"
